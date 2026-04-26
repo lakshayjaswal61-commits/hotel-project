@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbURL= 'mongodb://localhost:27017/Amit-Hotel-Project'; 
+const dbURL = process.env.DB_URL;
 
 const connectDB = async () => {
   try {
