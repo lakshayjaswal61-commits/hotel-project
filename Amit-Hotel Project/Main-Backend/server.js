@@ -13,7 +13,16 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+//Test route 
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
 // Routes
 app.use('/api/Admin',AdminRoutes);
@@ -24,6 +33,8 @@ app.use('/api/bookroom',BookRoomRoutes);
 
 
 // Start server
-app.listen(5200, () =>
-  console.log(`🚀 Server running on http://localhost:${5200}`)
+const PORT = process.env.PORT || 5200;
+
+app.listen(PORT, () =>
+  console.log(`🚀 Server running on port ${PORT}`)
 );
