@@ -14,7 +14,12 @@ function Login() {
   const formSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5200/api/Admin/login', { email, password });
+      const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.post(
+  `${API}/api/Admin/login`,
+  { email, password }
+);
       if (response.data === 'Success') {
         toast.success(`User with email "${email}" has been Login successfully.`);
         setEmail("");
